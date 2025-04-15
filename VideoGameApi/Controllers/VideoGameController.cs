@@ -20,5 +20,15 @@ namespace VideoGameApi.Controllers
         {
             return Ok(videoGames);
         }
+        [HttpGet("{id}")]
+        public ActionResult<VideoGame> GetVideoGameById(int id)
+        {
+            var videogame = videoGames.FirstOrDefault(v => v.Id == id);
+            if(videogame is null)
+            {
+                return NotFound();
+            }
+            return Ok(videogame);
+        }
     }
 }
