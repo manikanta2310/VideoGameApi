@@ -57,6 +57,17 @@ namespace VideoGameApi.Controllers
             videogame.Genre = updatedGame.Genre;
             return  NoContent();
         }
+        [HttpDelete("{id}")]
+        public  IActionResult DeleteVideoGame(int id)
+        {
+            var videogame = videoGames.FirstOrDefault(v => v.Id == id);
+            if (videogame is null)
+            {
+                return NotFound();
+            }
+            videoGames.Remove(videogame);
+            return NoContent();
+        }
 
     }
 }
