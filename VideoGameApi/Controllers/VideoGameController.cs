@@ -30,5 +30,19 @@ namespace VideoGameApi.Controllers
             }
             return Ok(videogame);
         }
+
+        [HttpPost]
+        public ActionResult<VideoGame> AddVideoGame(VideoGame newGame)
+        {
+            if(newGame is null)
+            
+                return BadRequest();
+                
+                    newGame.Id = videoGames.Max(v => v.Id) + 1;
+                videoGames.Add(newGame);
+            return CreatedAtAction(nameof(GetVideoGameById), new { id = newGame.Id }, newGame);
+        }
+       
+         
     }
 }
